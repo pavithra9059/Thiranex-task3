@@ -1,0 +1,250 @@
+<html>
+<head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  .pg{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#0a0a1a 0%,#12042a 50%,#0a1628 100%);min-height:100vh;color:#fff;padding:0 0 60px;overflow-x:hidden}
+  .hero{text-align:center;padding:60px 24px 40px;position:relative}
+  .badge{display:inline-block;background:linear-gradient(90deg,#7c3aed,#3b82f6);padding:6px 18px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:24px}
+  .hero h1{font-size:clamp(28px,5vw,52px);font-weight:700;line-height:1.15;margin-bottom:16px;background:linear-gradient(135deg,#fff 0%,#c084fc 50%,#60a5fa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .hero p{font-size:16px;color:rgba(255,255,255,0.65);max-width:540px;margin:0 auto 36px;line-height:1.7}
+  .btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+  .btn-pri{background:linear-gradient(135deg,#7c3aed,#3b82f6);border:none;color:#fff;padding:14px 28px;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;transition:transform .15s,box-shadow .15s}
+  .btn-pri:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(124,58,237,0.5)}
+  .btn-sec{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);color:#fff;padding:14px 28px;border-radius:12px;font-size:15px;font-weight:500;cursor:pointer;transition:background .15s}
+  .btn-sec:hover{background:rgba(255,255,255,0.14)}
+
+  .section{padding:24px 24px 0;max-width:820px;margin:0 auto}
+  .sec-title{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;color:#a78bfa;margin-bottom:20px;display:flex;align-items:center;gap:8px}
+  .sec-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(167,139,250,0.3),transparent)}
+
+  .screens-row{display:flex;gap:14px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
+  .screens-row::-webkit-scrollbar{display:none}
+  .screen-card{flex:0 0 140px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .2s,border-color .2s}
+  .screen-card:hover{transform:translateY(-4px);border-color:rgba(124,58,237,0.6)}
+  .screen-thumb{height:100px;display:flex;align-items:center;justify-content:center;font-size:28px;position:relative}
+  .screen-thumb.s1{background:linear-gradient(135deg,#7c3aed,#4f46e5)}
+  .screen-thumb.s2{background:linear-gradient(135deg,#0ea5e9,#6366f1)}
+  .screen-thumb.s3{background:linear-gradient(135deg,#ec4899,#8b5cf6)}
+  .screen-thumb.s4{background:linear-gradient(135deg,#f97316,#ef4444)}
+  .screen-thumb.s5{background:linear-gradient(135deg,#06b6d4,#3b82f6)}
+  .screen-thumb.s6{background:linear-gradient(135deg,#10b981,#0ea5e9)}
+  .screen-lbl{padding:10px 10px 12px;font-size:12px;font-weight:500;color:rgba(255,255,255,0.8)}
+
+  .flows{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+  .flow-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:16px}
+  .flow-num{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-bottom:10px}
+  .fn1{background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff}
+  .fn2{background:linear-gradient(135deg,#0ea5e9,#06b6d4);color:#fff}
+  .fn3{background:linear-gradient(135deg,#ec4899,#f97316);color:#fff}
+  .fn4{background:linear-gradient(135deg,#10b981,#3b82f6);color:#fff}
+  .flow-title{font-size:13px;font-weight:600;margin-bottom:8px;color:#fff}
+  .flow-steps{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.9}
+  .arrow{color:rgba(255,255,255,0.25);margin:0 2px}
+
+  .anim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+  .anim-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px;text-align:center;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+  .anim-card:hover{border-color:rgba(124,58,237,0.5);background:rgba(124,58,237,0.08)}
+  .anim-icon{font-size:22px;margin-bottom:8px}
+  .anim-name{font-size:12px;font-weight:500;color:rgba(255,255,255,0.8);margin-bottom:4px}
+  .anim-type{font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:.5px}
+  .pulse-demo{animation:pulseA 2s infinite}
+  @keyframes pulseA{0%,100%{opacity:1}50%{opacity:.4}}
+  .ripple-overlay{position:absolute;border-radius:50%;background:rgba(124,58,237,0.35);transform:scale(0);animation:rippleA .6s ease-out forwards}
+  @keyframes rippleA{to{transform:scale(4);opacity:0}}
+  .float-demo{animation:floatA 3s ease-in-out infinite}
+  @keyframes floatA{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+  .palette-row{display:flex;gap:8px;flex-wrap:wrap}
+  .swatch{flex:1;min-width:70px;height:48px;border-radius:10px;display:flex;align-items:flex-end;padding:6px 8px;font-size:10px;font-weight:600;letter-spacing:.3px;cursor:pointer;transition:transform .15s}
+  .swatch:hover{transform:scaleY(1.08)}
+  .sw1{background:linear-gradient(135deg,#7c3aed,#a855f7);color:#ddd6fe}
+  .sw2{background:linear-gradient(135deg,#3b82f6,#06b6d4);color:#bae6fd}
+  .sw3{background:linear-gradient(135deg,#ec4899,#f43f5e);color:#fce7f3}
+  .sw4{background:linear-gradient(135deg,#f97316,#eab308);color:#fed7aa}
+  .sw5{background:linear-gradient(135deg,#06b6d4,#10b981);color:#a7f3d0}
+  .sw6{background:linear-gradient(135deg,#1e1b4b,#0f172a);color:rgba(255,255,255,0.4)}
+
+  .deliverables{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+  .del-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;display:flex;align-items:flex-start;gap:12px}
+  .del-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+  .di1{background:rgba(124,58,237,0.25);color:#c084fc}
+  .di2{background:rgba(59,130,246,0.25);color:#93c5fd}
+  .di3{background:rgba(236,72,153,0.25);color:#f9a8d4}
+  .di4{background:rgba(249,115,22,0.25);color:#fdba74}
+  .di5{background:rgba(6,182,212,0.25);color:#67e8f9}
+  .di6{background:rgba(16,185,129,0.25);color:#6ee7b7}
+  .di7{background:rgba(234,179,8,0.25);color:#fde047}
+  .del-text h4{font-size:13px;font-weight:600;color:#fff;margin-bottom:3px}
+  .del-text p{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.5}
+
+  .bottom-cta{text-align:center;padding:48px 24px 0}
+  .bottom-cta h2{font-size:clamp(20px,4vw,32px);font-weight:700;margin-bottom:12px;background:linear-gradient(135deg,#c084fc,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .bottom-cta p{color:rgba(255,255,255,0.5);margin-bottom:28px;font-size:14px}
+  .tools-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
+  .tool-pill{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.75);padding:8px 18px;border-radius:999px;font-size:13px;font-weight:500}
+
+  .stat-strip{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;padding:32px 24px 0}
+  .stat{text-align:center}
+  .stat-n{font-size:28px;font-weight:700;background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .stat-l{font-size:12px;color:rgba(255,255,255,0.4);margin-top:2px}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);margin:36px 24px}
+</style>
+</head>
+<div class="pg">
+  <h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden">Interactive Mobile App Prototype – full project overview covering screens, flows, animations, color palette, and deliverables</h2>
+
+  <div class="hero">
+    <div class="badge">UI/UX Prototype Project</div>
+    <h1>Build a Clickable<br>Interactive Prototype</h1>
+    <p>Transform wireframes into a high-fidelity mobile app with full navigation, animations, and real user flows — all in Figma or InVision.</p>
+    <div class="btn-row">
+      <button class="btn-pri" onclick="sendPrompt('Give me a step by step plan to start building this prototype in Figma')">Start Building ↗</button>
+      <button class="btn-sec" onclick="sendPrompt('What are the most important screens to design first for this prototype?')">Where to begin?</button>
+    </div>
+  </div>
+
+  <div class="stat-strip">
+    <div class="stat"><div class="stat-n">17</div><div class="stat-l">Screens</div></div>
+    <div class="stat"><div class="stat-n">4</div><div class="stat-l">User Flows</div></div>
+    <div class="stat"><div class="stat-n">8</div><div class="stat-l">Transitions</div></div>
+    <div class="stat"><div class="stat-n">7</div><div class="stat-l">Deliverables</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="sec-title"><i class="ti ti-device-mobile" aria-hidden="true"></i> Screens to design</div>
+    <div class="screens-row" id="scroller">
+      <div class="screen-card"><div class="screen-thumb s1"><i class="ti ti-sparkles" style="font-size:32px;color:rgba(255,255,255,0.9)" aria-hidden="true"></i></div><div class="screen-lbl">Splash Screen</div></div>
+      <div class="screen-card"><div class="screen-thumb s2"><i class="ti ti-presentation" style="font-size:32px;color:rgba(255,255,255,0.9)" aria-hidden="true"></i></div><div class="screen-lbl">Onboarding</div></div>
+      <div class="screen-card"><div class="screen-thumb s3"><i class="ti ti-lock" style="font-size:32px;color:rgba(255,255,255,0.9)" aria-hidden="true"></i></div><div class="screen-lbl">Login</div></div>
+      <div class="screen-card"><div class="screen-thumb s4"><i class="ti ti-home" style="font-size:32px;color:rgba(255,255,255,0.9)" aria-hidden="true"></i></div><div class="screen-lbl">Dashboard</div></div>
+      <div class="screen-card"><div class="screen-thumb s5"><i class="ti ti-search" style="font-size:32px;color:rgba(255,255,255,0.9)" aria-hidden="true"></i></div><div class="screen-lbl">Search</div></div>
+      <div class="screen-card"><div class="screen-thumb s6"><i class="ti ti-shopping-cart" style="font-size:32px;color:rgba(255,255,255,0.9)" aria-hidden="true"></i></div><div class="screen-lbl">Cart</div></div>
+      <div class="screen-card"><div class="screen-thumb s1"><i class="ti ti-credit-card" style="font-size:32px;color:rgba(255,255,255,0.9)" aria-hidden="true"></i></div><div class="screen-lbl">Checkout</div></div>
+      <div class="screen-card"><div class="screen-thumb s2"><i class="ti ti-circle-check" style="font-size:32px;color:rgba(255,255,255,0.9)" aria-hidden="true"></i></div><div class="screen-lbl">Payment OK</div></div>
+      <div class="screen-card"><div class="screen-thumb s3"><i class="ti ti-user" style="font-size:32px;color:rgba(255,255,255,0.9)" aria-hidden="true"></i></div><div class="screen-lbl">Profile</div></div>
+      <div class="screen-card"><div class="screen-thumb s4"><i class="ti ti-settings" style="font-size:32px;color:rgba(255,255,255,0.9)" aria-hidden="true"></i></div><div class="screen-lbl">Settings</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="sec-title"><i class="ti ti-route" aria-hidden="true"></i> User flows</div>
+    <div class="flows">
+      <div class="flow-card"><div class="flow-num fn1">1</div><div class="flow-title">Onboarding</div><div class="flow-steps">Open App<span class="arrow">→</span>Splash<span class="arrow">→</span>Onboarding<span class="arrow">→</span>Login<span class="arrow">→</span>Home</div></div>
+      <div class="flow-card"><div class="flow-num fn2">2</div><div class="flow-title">Purchase</div><div class="flow-steps">Home<span class="arrow">→</span>Search<span class="arrow">→</span>Product<span class="arrow">→</span>Cart<span class="arrow">→</span>Pay</div></div>
+      <div class="flow-card"><div class="flow-num fn3">3</div><div class="flow-title">Profile Edit</div><div class="flow-steps">Home<span class="arrow">→</span>Profile<span class="arrow">→</span>Settings<span class="arrow">→</span>Edit<span class="arrow">→</span>Save</div></div>
+      <div class="flow-card"><div class="flow-num fn4">4</div><div class="flow-title">Password Reset</div><div class="flow-steps">Forgot PW<span class="arrow">→</span>OTP<span class="arrow">→</span>New PW<span class="arrow">→</span>Login</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="sec-title"><i class="ti ti-wand" aria-hidden="true"></i> Animations & interactions</div>
+    <div class="anim-grid">
+      <div class="anim-card" id="card-fade" onclick="demoAnim('fade')">
+        <div class="anim-icon" id="icon-fade">🌀</div>
+        <div class="anim-name">Fade In/Out</div>
+        <div class="anim-type">Screen transition</div>
+      </div>
+      <div class="anim-card" onclick="demoAnim('slide')">
+        <div class="anim-icon float-demo">✦</div>
+        <div class="anim-name">Slide Left/Right</div>
+        <div class="anim-type">Screen transition</div>
+      </div>
+      <div class="anim-card" id="card-ripple" onclick="demoRipple(this)">
+        <div class="anim-icon pulse-demo">◉</div>
+        <div class="anim-name">Press Ripple</div>
+        <div class="anim-type">Button feedback</div>
+      </div>
+      <div class="anim-card">
+        <div class="anim-icon float-demo" style="animation-delay:-.8s">⬡</div>
+        <div class="anim-name">Float Cards</div>
+        <div class="anim-type">Card animation</div>
+      </div>
+      <div class="anim-card" onclick="demoAnim('zoom')">
+        <div class="anim-icon" id="icon-zoom">⊙</div>
+        <div class="anim-name">Zoom In/Out</div>
+        <div class="anim-type">Scale transition</div>
+      </div>
+      <div class="anim-card">
+        <div class="anim-icon pulse-demo" style="animation-delay:-.4s">⬤</div>
+        <div class="anim-name">Pulse Effect</div>
+        <div class="anim-type">Button animation</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="sec-title"><i class="ti ti-palette" aria-hidden="true"></i> Color palette</div>
+    <div class="palette-row">
+      <div class="swatch sw1">Purple</div>
+      <div class="swatch sw2">Blue Neon</div>
+      <div class="swatch sw3">Pink</div>
+      <div class="swatch sw4">Orange</div>
+      <div class="swatch sw5">Cyan</div>
+      <div class="swatch sw6">Dark BG</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="sec-title"><i class="ti ti-package" aria-hidden="true"></i> Final deliverables</div>
+    <div class="deliverables">
+      <div class="del-card"><div class="del-icon di1"><i class="ti ti-device-mobile" aria-hidden="true"></i></div><div class="del-text"><h4>Hi-fi UI Screens</h4><p>All 17 screens polished and consistent</p></div></div>
+      <div class="del-card"><div class="del-icon di2"><i class="ti ti-cursor-text" aria-hidden="true"></i></div><div class="del-text"><h4>Clickable Prototype</h4><p>Every button wired, no dead ends</p></div></div>
+      <div class="del-card"><div class="del-icon di3"><i class="ti ti-route" aria-hidden="true"></i></div><div class="del-text"><h4>Flow Documentation</h4><p>All 4 user journeys mapped out</p></div></div>
+      <div class="del-card"><div class="del-icon di4"><i class="ti ti-chart-bar" aria-hidden="true"></i></div><div class="del-text"><h4>Testing Report</h4><p>Feedback from 3–5 real users</p></div></div>
+      <div class="del-card"><div class="del-icon di5"><i class="ti ti-wand" aria-hidden="true"></i></div><div class="del-text"><h4>Animated Transitions</h4><p>8 premium motion effects</p></div></div>
+      <div class="del-card"><div class="del-icon di6"><i class="ti ti-refresh" aria-hidden="true"></i></div><div class="del-text"><h4>Refined Prototype</h4><p>Improved after user testing</p></div></div>
+      <div class="del-card"><div class="del-icon di7"><i class="ti ti-tools" aria-hidden="true"></i></div><div class="del-text"><h4>Figma Source File</h4><p>All components & auto-layout</p></div></div>
+    </div>
+  </div>
+
+  <div class="bottom-cta">
+    <h2>Ready to start?</h2>
+    <p>Pick your tool and dive straight in</p>
+    <div class="tools-row">
+      <div class="tool-pill">Figma</div>
+      <div class="tool-pill">InVision</div>
+      <div class="tool-pill">Smart Animate</div>
+      <div class="tool-pill">Interactive Components</div>
+      <div class="tool-pill">Prototype Links</div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-pri" onclick="sendPrompt('Create a detailed checklist I can follow to complete this UI/UX prototype project')">Get my checklist ↗</button>
+      <button class="btn-sec" onclick="sendPrompt('What design system should I set up in Figma before I start wireframing all these screens?')">Design system tips</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function demoRipple(el){
+  const r=document.createElement('span');
+  r.className='ripple-overlay';
+  r.style.cssText='width:80px;height:80px;left:50%;top:50%;margin:-40px';
+  el.appendChild(r);
+  setTimeout(()=>r.remove(),700);
+}
+function demoAnim(type){
+  if(type==='fade'){
+    const ic=document.getElementById('icon-fade');
+    ic.style.transition='opacity .4s';ic.style.opacity='0';
+    setTimeout(()=>{ic.style.opacity='1'},450);
+  }
+  if(type==='zoom'){
+    const ic=document.getElementById('icon-zoom');
+    ic.style.transition='transform .3s';ic.style.transform='scale(1.6)';
+    setTimeout(()=>{ic.style.transform='scale(1)'},350);
+  }
+}
+</script>
+</html>
